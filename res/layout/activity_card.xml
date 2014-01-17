@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    
+    <TextView
+        android:id="@+id/word"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="WORD"
+        android:textSize="20sp"
+        android:textStyle="bold" />"
+    
+    <View
+    	android:layout_width="fill_parent"
+    	android:layout_height="1dip"
+    	android:background="#000000" />
+    
+    <TextView
+        android:id="@+id/taboo1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Taboo1" />
+
+    <TextView
+        android:id="@+id/taboo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Taboo2" />
+    
+    <TextView
+        android:id="@+id/taboo3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Taboo3" />
+
+    <TextView
+        android:id="@+id/taboo4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Taboo4" />
+    
+    <TextView
+        android:id="@+id/taboo5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="Taboo5" />
+    
+    <View
+    	android:layout_width="fill_parent"
+    	android:layout_height="1dip"
+    	android:background="#000000" />
+    
+    <Button
+        android:id="@+id/next_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.33"
+        android:text="Next Card"
+        android:onClick="nextCard" />
+
+</LinearLayout>
