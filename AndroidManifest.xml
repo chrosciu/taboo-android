@@ -25,7 +25,8 @@
         <activity
             android:name="com.chrosciu.taboo.CardActivity"
             android:label="@string/title_activity_card"
-            android:parentActivityName="com.chrosciu.taboo.MainActivity" >
+            android:parentActivityName="com.chrosciu.taboo.MainActivity"
+            android:configChanges="orientation|screenSize|layoutDirection|keyboard|keyboardHidden|navigation|screenLayout" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.chrosciu.taboo.MainActivity" />
