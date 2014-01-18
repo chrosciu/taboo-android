@@ -11,9 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:gravity="center"
-        android:text="WORD"
         android:textSize="20sp"
-        android:textStyle="bold" />"
+        android:textStyle="bold" />
     
     <View
     	android:layout_width="fill_parent"
@@ -25,40 +24,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="Taboo1" />
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/taboo2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="Taboo2" />
+        android:gravity="center" />
     
     <TextView
         android:id="@+id/taboo3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="Taboo3" />
+        android:gravity="center" />
 
     <TextView
         android:id="@+id/taboo4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="Taboo4" />
+        android:gravity="center" />
     
     <TextView
         android:id="@+id/taboo5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:gravity="center"
-        android:text="Taboo5" />
+        android:gravity="center" />
     
     <View
     	android:layout_width="fill_parent"
@@ -70,7 +64,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.33"
-        android:text="Next Card"
+        android:text="@string/button_next_card"
         android:onClick="nextCard" />
 
 </LinearLayout>

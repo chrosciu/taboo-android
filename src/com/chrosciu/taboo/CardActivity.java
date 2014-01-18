@@ -1,12 +1,11 @@
 package com.chrosciu.taboo;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Random;
 
-import android.content.Intent;
+import android.annotation.SuppressLint;
 import android.content.res.AssetManager;
 import android.content.res.Configuration;
 import android.os.Bundle;
@@ -18,6 +17,7 @@ import android.widget.TextView;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBarActivity;
 
+@SuppressLint("DefaultLocale")
 public class CardActivity extends ActionBarActivity {
 	
 	private static final String TAG = "CardActivity";
@@ -39,7 +39,6 @@ public class CardActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.card, menu);
 		return true;
 	}
@@ -48,22 +47,10 @@ public class CardActivity extends ActionBarActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
-	}
-	
-	@Override
-	public void onBackPressed() {
-		NavUtils.navigateUpFromSameTask(this);
 	}
 	
 	@Override
@@ -72,8 +59,7 @@ public class CardActivity extends ActionBarActivity {
 	}
 	
 	public void nextCard(View view) {
-    	Intent intent = new Intent(this, CardActivity.class);
-    	startActivity(intent);
+		loadCard();
     }
 	
 	private void loadCard() {
@@ -105,7 +91,7 @@ public class CardActivity extends ActionBarActivity {
 			//Log.i(TAG, "line -> " + line);
 			
 			String[] taboos = line.split(";");
-			String word = taboos[0].toUpperCase();
+			String word = taboos[0].toUpperCase(); 
 			
 			TextView wordView = (TextView)findViewById(R.id.word);
 			wordView.setText(word);
