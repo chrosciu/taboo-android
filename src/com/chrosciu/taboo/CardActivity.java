@@ -80,9 +80,9 @@ public class CardActivity extends ActionBarActivity {
 			 
 			*/
 			
-			int taboosCount = 907;
+			int taboosCount = 2285;
 			int tabooNumber = random.nextInt(taboosCount) + 1;
-			String tabooFile = "taboos/taboo" + tabooNumber + ".txt";
+			String tabooFile = "cards/taboo" + tabooNumber + ".txt";
 			
 			InputStream inputStream = assetManager.open(tabooFile, AssetManager.ACCESS_BUFFER);
 			InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
