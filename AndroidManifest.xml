@@ -30,6 +30,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.chrosciu.taboo.MainActivity" />
         </activity>
+        <activity
+            android:name="com.chrosciu.taboo.SettingsActivity"
+            android:label="@string/title_activity_settings"
+            android:parentActivityName="com.chrosciu.taboo.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.chrosciu.taboo.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
