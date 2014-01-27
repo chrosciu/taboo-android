@@ -9,6 +9,7 @@ import android.preference.PreferenceActivity;
 import android.preference.PreferenceManager;
 
 public class SettingsActivity extends PreferenceActivity implements OnSharedPreferenceChangeListener {
+	
 	@SuppressWarnings("deprecation")
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class SettingsActivity extends PreferenceActivity implements OnSharedPref
 	
 	@SuppressWarnings("deprecation")
 	private void setSummary() {
-		Preference pref = findPreference("pref_Timeout");
+		Preference pref = findPreference(getString(R.string.pref_timeout_key));
 		ListPreference listPref = (ListPreference) pref;
         pref.setSummary(listPref.getEntry());
 	}

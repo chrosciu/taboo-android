@@ -2,6 +2,7 @@
 <resources>
 
     <string name="app_name">Taboo</string>
+    
     <string name="action_settings">Settings</string>
     <string name="action_search">Search</string>
     <string name="title_activity_main">Main</string>
@@ -9,6 +10,9 @@
     <string name="title_activity_settings">Settings</string>
     <string name="button_next_card">Next Card</string>
     <string name="taboo_splash">Splash Screen</string>
+    
+    <string name="pref_timeout_key">pref_timeout</string>
+    <string name="settings_default_timeout_value">30</string>
     
     <string-array name="settings_timeout_human_value">
         <item>30 secs</item>

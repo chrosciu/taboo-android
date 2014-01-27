@@ -47,8 +47,12 @@ public class CardActivity extends ActionBarActivity {
 		} else {
 			card = loadCard();
 			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-			String timeoutPref = sharedPref.getString("pref_Timeout", null);
-			counter = Integer.parseInt(timeoutPref);
+			counter = Integer.parseInt(
+					sharedPref.getString(
+							getString(R.string.pref_timeout_key), 
+							getString(R.string.settings_default_timeout_value)
+							)
+					);
 		}
 		displayCard();
 		

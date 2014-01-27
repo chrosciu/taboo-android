@@ -3,11 +3,11 @@
     <PreferenceCategory 
         android:title="Taboo Settings" >
     <ListPreference
-        android:key="pref_Timeout"
+        android:key="@string/pref_timeout_key"
         android:title="Timeout"
         android:dialogTitle="Timeout"
         android:entries="@array/settings_timeout_human_value"
         android:entryValues="@array/settings_timeout_value"
-        android:defaultValue="30" />
+        android:defaultValue="@string/settings_default_timeout_value" />
     </PreferenceCategory>
 </PreferenceScreen>
