@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <PreferenceCategory 
-        android:title="Taboo Settings" >
     <ListPreference
         android:key="@string/pref_timeout_key"
         android:title="Timeout"
@@ -9,5 +7,4 @@
         android:entries="@array/settings_timeout_human_value"
         android:entryValues="@array/settings_timeout_value"
         android:defaultValue="@string/settings_default_timeout_value" />
-    </PreferenceCategory>
 </PreferenceScreen>

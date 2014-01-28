@@ -1,18 +1,19 @@
 package com.chrosciu.taboo;
 
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
+
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class CardActivity extends ActionBarActivity {
+public class CardActivity extends SherlockActivity {
 	
 	class TimerRunnable implements Runnable {
 		@Override
@@ -83,7 +84,7 @@ public class CardActivity extends ActionBarActivity {
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.card, menu);
+		getSupportMenuInflater().inflate(R.menu.empty, menu);
 		return true;
 	}
 
