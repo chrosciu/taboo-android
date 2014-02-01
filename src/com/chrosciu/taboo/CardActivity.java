@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -18,10 +17,9 @@ public class CardActivity extends SherlockActivity {
 	class TimerRunnable implements Runnable {
 		@Override
         public void run() {
-			Log.i("TimerRunnable", "run() "  + counter);
 			if (counter > 0) {
 				TextView timerView = (TextView)(findViewById(R.id.timer));
-				timerView.setText("Remaining: " + counter + " secs");
+				timerView.setText(getString(R.string.time_remaining, counter));
 				timerHandler.postDelayed(this, 1000);
 				counter--;
 			} else {

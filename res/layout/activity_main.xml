@@ -12,13 +12,13 @@
         android:layout_gravity="center"
         android:layout_weight="7"
         android:src="@drawable/taboo_splash"
-        android:contentDescription="@string/taboo_splash" />
+        android:contentDescription="" />
     
     <Button
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:text="@string/button_next_card"
+        android:text="@string/next_card"
         android:onClick="nextCard" />
     
 </LinearLayout>

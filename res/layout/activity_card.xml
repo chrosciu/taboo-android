@@ -79,7 +79,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.33"
-        android:text="@string/button_next_card"
+        android:text="@string/next_card"
         android:onClick="nextCard" />
 
 </LinearLayout>
