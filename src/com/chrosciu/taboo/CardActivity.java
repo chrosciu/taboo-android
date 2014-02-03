@@ -17,42 +17,41 @@ public class CardActivity extends SherlockActivity {
 	class TimerRunnable implements Runnable {
 		@Override
         public void run() {
-			if (counter > 0) {
-				TextView timerView = (TextView)(findViewById(R.id.timer));
-				timerView.setText(getString(R.string.time_remaining, counter));
-				timerHandler.postDelayed(this, 1000);
-				counter--;
-			} else {
-				NavUtils.navigateUpFromSameTask(CardActivity.this);
-			}
+			handleTimerTick();
 		}
 	}
 	
 	private static final String CARD_KEY = "card";
-	private static final String COUNTER_KEY = "counter";
+	private static final String TIME_KEY = "time";
+	private static final String POINTS_KEY = "points";
 	private Card card = null;
 	private Handler timerHandler = new Handler();
 	private Runnable timerRunnable = new TimerRunnable();
-	private int counter = 0;
+	private int time = 0;
+	private int points = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_card);
-		setupActionBar();
+		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		if (savedInstanceState != null) {
 			card = (Card)(savedInstanceState.get(CARD_KEY));
-			counter = savedInstanceState.getInt(COUNTER_KEY, 0);
+			time = savedInstanceState.getInt(TIME_KEY, 0);
+			points = savedInstanceState.getInt(POINTS_KEY, 0);
 		} else {
 			card = loadCard();
 			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-			counter = Integer.parseInt(
+			time = Integer.parseInt(
 					sharedPref.getString(
 							getString(R.string.pref_timeout_key), 
 							getString(R.string.settings_default_timeout_value)
 							)
 					);
+			points = 0;
 		}
+		displayTimer();
+		displayPoints();
 		displayCard();
 		
 	}
@@ -72,12 +71,9 @@ public class CardActivity extends SherlockActivity {
 	@Override 
 	public void onSaveInstanceState(Bundle outState) {
 		outState.putSerializable(CARD_KEY, card);
-		outState.putInt(COUNTER_KEY, counter);
+		outState.putInt(TIME_KEY, time);
+		outState.putInt(POINTS_KEY, points);
 		super.onSaveInstanceState(outState);
-	}
-
-	private void setupActionBar() {
-		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override
@@ -96,8 +92,27 @@ public class CardActivity extends SherlockActivity {
 		return super.onOptionsItemSelected(item);
 	}
 	
+	private void handleTimerTick() {
+		if (time > 0) {
+			displayTimer();
+			timerHandler.postDelayed(timerRunnable, 1000);
+			time--;
+		} else {
+			NavUtils.navigateUpFromSameTask(this);
+		}
+	}
 	
-	public void nextCard(View view) {
+	public void passed(View view) {
+		points++;
+		displayPoints();
+		nextCard();
+	}
+	
+	public void failed(View view) {
+		nextCard();
+	}
+	
+	private void nextCard() {
 		card = loadCard();
 		displayCard();
     }
@@ -120,6 +135,16 @@ public class CardActivity extends SherlockActivity {
 		for (int i = 0; i < 5; ++i) {
 			tabooViews[i].setText(card.getTaboos()[i]);
 		}
+	}
+	
+	private void displayPoints() {
+		TextView pointsView = (TextView)(findViewById(R.id.points));
+		pointsView.setText(getString(R.string.points, points));
+	}
+	
+	private void displayTimer() {
+		TextView timerView = (TextView)(findViewById(R.id.timer));
+		timerView.setText(getString(R.string.time_remaining, time));
 	}
 
 }

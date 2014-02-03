@@ -6,8 +6,11 @@
     <string name="main">Ekran główny</string>
     <string name="card">Karta</string>
     <string name="settings">Ustawienia</string>
-    <string name="next_card">Następna karta</string>
-    <string name="time_remaining">Pozostało %1$d sek</string>
+    <string name="next_round">Następna runda</string>
+    <string name="passed">Zaliczona</string>
+    <string name="failed">Pomiń</string>
+    <string name="time_remaining">Czas: %1$d s</string>
+    <string name="points">Punkty: %1$d</string>
     <string name="timeout">Czas trwania rundy</string>
     
     <string name="pref_timeout_key">com.chrosciu.prefTimeout</string>
