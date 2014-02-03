@@ -35,7 +35,7 @@ public class CardActivity extends SherlockActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_card);
+		setContentView(R.layout.card_activity);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		if (savedInstanceState != null) {
 			card = (Card)(savedInstanceState.get(CARD_KEY));
@@ -157,7 +157,6 @@ public class CardActivity extends SherlockActivity {
 			   NavUtils.navigateUpFromSameTask(CardActivity.this);
 		   }
 		});
-		// Set the Icon for the Dialog
 		alertDialog.show();
 	}
 
