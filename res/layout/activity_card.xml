@@ -13,7 +13,7 @@
 	    <TextView
 	        android:id="@+id/timer"
 	        android:layout_height="match_parent"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:gravity="center"
 	        android:textColor="@color/red"
@@ -23,7 +23,7 @@
 	    <TextView
 	        android:id="@+id/points"
 	        android:layout_height="match_parent"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_weight="1"
 	        android:gravity="center"
 	        android:textColor="@color/blue"
@@ -98,7 +98,7 @@
     
 	    <Button
 	        android:id="@+id/passed"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
 	        android:onClick="passed"
@@ -106,7 +106,7 @@
 	    
 	    <Button
 	        android:id="@+id/failed"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dp"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
 	        android:onClick="failed"

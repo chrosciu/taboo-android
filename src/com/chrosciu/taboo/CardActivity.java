@@ -1,9 +1,7 @@
 package com.chrosciu.taboo;
 
-import com.actionbarsherlock.app.SherlockActivity;
-import com.actionbarsherlock.view.Menu;
-import com.actionbarsherlock.view.MenuItem;
-
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
@@ -11,6 +9,10 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.NavUtils;
 import android.view.View;
 import android.widget.TextView;
+
+import com.actionbarsherlock.app.SherlockActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuItem;
 
 public class CardActivity extends SherlockActivity {
 	
@@ -53,7 +55,6 @@ public class CardActivity extends SherlockActivity {
 		displayTimer();
 		displayPoints();
 		displayCard();
-		
 	}
 	
 	@Override
@@ -98,7 +99,7 @@ public class CardActivity extends SherlockActivity {
 			timerHandler.postDelayed(timerRunnable, 1000);
 			time--;
 		} else {
-			NavUtils.navigateUpFromSameTask(this);
+			displaySummaryDialog();
 		}
 	}
 	
@@ -145,6 +146,19 @@ public class CardActivity extends SherlockActivity {
 	private void displayTimer() {
 		TextView timerView = (TextView)(findViewById(R.id.timer));
 		timerView.setText(getString(R.string.time_remaining, time));
+	}
+	
+	private void displaySummaryDialog() {
+		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+		alertDialog.setTitle("Koniec rundy");
+		alertDialog.setMessage("Punkty: " + points);
+		alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+		   public void onClick(DialogInterface dialog, int which) {
+			   NavUtils.navigateUpFromSameTask(CardActivity.this);
+		   }
+		});
+		// Set the Icon for the Dialog
+		alertDialog.show();
 	}
 
 }
