@@ -12,6 +12,11 @@
     <string name="time_remaining">Czas: %1$d s</string>
     <string name="points">Punkty: %1$d</string>
     <string name="timeout">Czas trwania rundy</string>
+    <string name="end">Koniec rundy</string>
+    <string name="confirmation">Potwierdzenie</string>
+    <string name="end_confirmation_question">Czy na pewno chcesz wyjść ?</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Anuluj</string>
     
     <string name="pref_timeout_key">com.chrosciu.prefTimeout</string>
     <string name="settings_default_timeout_value">30</string>

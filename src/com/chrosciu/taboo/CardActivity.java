@@ -16,19 +16,17 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class CardActivity extends SherlockActivity {
 	
-	class TimerRunnable implements Runnable {
-		@Override
-        public void run() {
-			handleTimerTick();
-		}
-	}
-	
 	private static final String CARD_KEY = "card";
 	private static final String TIME_KEY = "time";
 	private static final String POINTS_KEY = "points";
 	private Card card = null;
 	private Handler timerHandler = new Handler();
-	private Runnable timerRunnable = new TimerRunnable();
+	private Runnable timerRunnable = new Runnable() {
+		@Override
+        public void run() {
+			handleTimerTick();
+		}
+	};
 	private int time = 0;
 	private int points = 0;
 	
@@ -38,43 +36,63 @@ public class CardActivity extends SherlockActivity {
 		setContentView(R.layout.card_activity);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 		if (savedInstanceState != null) {
-			card = (Card)(savedInstanceState.get(CARD_KEY));
-			time = savedInstanceState.getInt(TIME_KEY, 0);
-			points = savedInstanceState.getInt(POINTS_KEY, 0);
+			restoreData(savedInstanceState);
 		} else {
-			card = loadCard();
-			SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-			time = Integer.parseInt(
-					sharedPref.getString(
-							getString(R.string.pref_timeout_key), 
-							getString(R.string.settings_default_timeout_value)
-							)
-					);
-			points = 0;
+			initData();
 		}
 		displayTimer();
 		displayPoints();
 		displayCard();
 	}
+
+	private void initData() {
+		card = loadCard();
+		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+		time = Integer.parseInt(
+				sharedPref.getString(
+						getString(R.string.pref_timeout_key), 
+						getString(R.string.settings_default_timeout_value)
+						)
+				);
+		points = 0;
+	}
+
+	private void restoreData(Bundle savedInstanceState) {
+		card = (Card)(savedInstanceState.get(CARD_KEY));
+		time = savedInstanceState.getInt(TIME_KEY, 0);
+		points = savedInstanceState.getInt(POINTS_KEY, 0);
+	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
-		timerHandler.postDelayed(timerRunnable, 0);
+		scheduleTimer();
+	}
+
+	private void scheduleTimer() {
+		timerHandler.postDelayed(timerRunnable, 1000);
 	}
 	
 	@Override
 	protected void onPause() {
-		timerHandler.removeCallbacks(timerRunnable);
+		descheduleTimer();
 		super.onPause();
+	}
+
+	private void descheduleTimer() {
+		timerHandler.removeCallbacks(timerRunnable);
 	}
 	
 	@Override 
 	public void onSaveInstanceState(Bundle outState) {
+		storeData(outState);
+		super.onSaveInstanceState(outState);
+	}
+
+	private void storeData(Bundle outState) {
 		outState.putSerializable(CARD_KEY, card);
 		outState.putInt(TIME_KEY, time);
 		outState.putInt(POINTS_KEY, points);
-		super.onSaveInstanceState(outState);
 	}
 
 	@Override
@@ -87,17 +105,22 @@ public class CardActivity extends SherlockActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
+			displayAbortConfirmationDialog();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}
 	
+	@Override
+	public void onBackPressed() {
+		displayAbortConfirmationDialog();
+	}
+	
 	private void handleTimerTick() {
+		time--;
+		displayTimer();
 		if (time > 0) {
-			displayTimer();
-			timerHandler.postDelayed(timerRunnable, 1000);
-			time--;
+			scheduleTimer();
 		} else {
 			displaySummaryDialog();
 		}
@@ -150,13 +173,32 @@ public class CardActivity extends SherlockActivity {
 	
 	private void displaySummaryDialog() {
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
-		alertDialog.setTitle("Koniec rundy");
-		alertDialog.setMessage("Punkty: " + points);
-		alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+		alertDialog.setTitle(getString(R.string.end));
+		alertDialog.setMessage(getString(R.string.points, points));
+		alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.ok), new DialogInterface.OnClickListener() {
 		   public void onClick(DialogInterface dialog, int which) {
 			   NavUtils.navigateUpFromSameTask(CardActivity.this);
 		   }
 		});
+		alertDialog.show();
+	}
+	
+	private void displayAbortConfirmationDialog() {
+		descheduleTimer();
+		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+		alertDialog.setTitle(getString(R.string.confirmation));
+		alertDialog.setMessage(getString(R.string.end_confirmation_question));
+		alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.ok), new DialogInterface.OnClickListener() {
+		   public void onClick(DialogInterface dialog, int which) {
+			   NavUtils.navigateUpFromSameTask(CardActivity.this);
+		   }
+		});
+		alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
+			   public void onClick(DialogInterface dialog, int which) {
+				   dialog.dismiss();
+				   scheduleTimer();
+			   }
+			});
 		alertDialog.show();
 	}
 
