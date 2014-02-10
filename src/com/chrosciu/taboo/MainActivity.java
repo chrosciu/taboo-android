@@ -14,9 +14,8 @@ public class MainActivity extends SherlockActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
         setContentView(R.layout.main_activity);
-        CardLoader.initialize(getAssets());
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
     }
 
     @Override
