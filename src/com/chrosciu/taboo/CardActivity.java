@@ -180,6 +180,7 @@ public class CardActivity extends SherlockActivity {
 			   NavUtils.navigateUpFromSameTask(CardActivity.this);
 		   }
 		});
+		alertDialog.setIcon(android.R.drawable.ic_dialog_info);
 		alertDialog.show();
 	}
 	
@@ -199,6 +200,7 @@ public class CardActivity extends SherlockActivity {
 				   scheduleTimer();
 			   }
 			});
+		alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 		alertDialog.show();
 	}
 
