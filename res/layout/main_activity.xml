@@ -5,20 +5,45 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_weight="7"
-        android:src="@drawable/taboo_splash"
-        android:contentDescription="" />
+     <TextView
+        android:id="@+id/team1_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/red" />
+     
+      <TextView
+        android:id="@+id/team2_score"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/blue" />
     
     <Button
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/next_round"
-        android:onClick="nextCard" />
+        android:text="@string/reset_score"
+        android:onClick="resetScore" />
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/team1"
+        android:onClick="team1" />
+    
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/team2"
+        android:onClick="team2" />
     
 </LinearLayout>

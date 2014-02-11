@@ -16,9 +16,12 @@ import com.actionbarsherlock.view.MenuItem;
 
 public class CardActivity extends SherlockActivity {
 	
+	public static final String TEAM_KEY = "com.chrosciu.taboo.TEAM";
+	
 	private static final String CARD_KEY = "card";
 	private static final String TIME_KEY = "time";
 	private static final String POINTS_KEY = "points";
+	
 	private Card card = null;
 	private Handler timerHandler = new Handler();
 	private Runnable timerRunnable = new Runnable() {
@@ -29,12 +32,15 @@ public class CardActivity extends SherlockActivity {
 	};
 	private int time = 0;
 	private int points = 0;
+	private boolean team = true;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		team = getIntent().getBooleanExtra(TEAM_KEY, true);
 		setContentView(R.layout.card_activity);
 		getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+		getSupportActionBar().setTitle(getString(R.string.team, team ? 1 : 2));
 		if (savedInstanceState != null) {
 			restoreData(savedInstanceState);
 		} else {
@@ -177,6 +183,7 @@ public class CardActivity extends SherlockActivity {
 		alertDialog.setMessage(getString(R.string.points, points));
 		alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.ok), new DialogInterface.OnClickListener() {
 		   public void onClick(DialogInterface dialog, int which) {
+			   updateScore();
 			   NavUtils.navigateUpFromSameTask(CardActivity.this);
 		   }
 		});
@@ -195,13 +202,17 @@ public class CardActivity extends SherlockActivity {
 		   }
 		});
 		alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
-			   public void onClick(DialogInterface dialog, int which) {
-				   dialog.dismiss();
-				   scheduleTimer();
-			   }
-			});
+		   public void onClick(DialogInterface dialog, int which) {
+			   dialog.dismiss();
+			   scheduleTimer();
+		   }
+		});
 		alertDialog.setIcon(android.R.drawable.ic_dialog_alert);
 		alertDialog.show();
+	}
+	
+	private void updateScore() {
+		Score.add(team, points);
 	}
 
 }

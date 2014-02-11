@@ -28,7 +28,6 @@
         </activity>
         <activity
             android:name="com.chrosciu.taboo.CardActivity"
-            android:label="@string/card"
             android:parentActivityName="com.chrosciu.taboo.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
