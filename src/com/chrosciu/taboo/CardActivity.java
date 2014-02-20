@@ -3,6 +3,7 @@ package com.chrosciu.taboo;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -128,6 +129,7 @@ public class CardActivity extends SherlockActivity {
 		if (time > 0) {
 			scheduleTimer();
 		} else {
+			playSound(R.raw.failure);
 			displaySummaryDialog();
 		}
 	}
@@ -135,10 +137,12 @@ public class CardActivity extends SherlockActivity {
 	public void passed(View view) {
 		points++;
 		displayPoints();
+		playSound(R.raw.success);
 		nextCard();
 	}
 	
 	public void failed(View view) {
+		playSound(R.raw.failure);
 		nextCard();
 	}
 	
@@ -213,6 +217,16 @@ public class CardActivity extends SherlockActivity {
 	
 	private void updateScore() {
 		Score.add(team, points);
+	}
+	
+	private void playSound(int resourceId) {
+		MediaPlayer player = MediaPlayer.create(this, resourceId);
+		player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+			public void onCompletion(MediaPlayer mp) {
+				mp.release();
+			}
+		});
+		player.start();
 	}
 
 }
