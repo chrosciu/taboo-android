@@ -24,9 +24,12 @@
     <string name="team1">Drużyna 1</string>
     <string name="team2">Drużyna 2</string>
     <string name="team_score">Drużyna %1$d: %2$d pkt</string>
+    <string name="sound">Dźwięk</string>
     
     <string name="pref_timeout_key">com.chrosciu.prefTimeout</string>
     <string name="settings_default_timeout_value">30</string>
+    
+    <string name="pref_sound_key">com.chrosciu.prefSound</string>
     
     <string-array name="settings_timeout_human_value">
         <item>30 sek</item>

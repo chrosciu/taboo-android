@@ -7,4 +7,8 @@
         android:entries="@array/settings_timeout_human_value"
         android:entryValues="@array/settings_timeout_value"
         android:defaultValue="@string/settings_default_timeout_value" />
+    <CheckBoxPreference
+        android:key="@string/pref_sound_key"
+        android:title="@string/sound"
+        android:defaultValue="true" />
 </PreferenceScreen>

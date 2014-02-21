@@ -34,6 +34,7 @@ public class CardActivity extends SherlockActivity {
 	private int time = 0;
 	private int points = 0;
 	private boolean team = true;
+	private boolean sound = true;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class CardActivity extends SherlockActivity {
 						getString(R.string.settings_default_timeout_value)
 						)
 				);
+		sound = sharedPref.getBoolean(getString(R.string.pref_sound_key), true);
 		points = 0;
 	}
 
@@ -220,6 +222,9 @@ public class CardActivity extends SherlockActivity {
 	}
 	
 	private void playSound(int resourceId) {
+		if (!sound) {
+			return;
+		}
 		MediaPlayer player = MediaPlayer.create(this, resourceId);
 		player.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 			public void onCompletion(MediaPlayer mp) {
