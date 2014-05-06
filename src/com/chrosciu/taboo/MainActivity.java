@@ -1,6 +1,7 @@
 package com.chrosciu.taboo;
 
 import android.app.AlertDialog;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,10 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuItem;
+
+interface Command {
+	void execute();
+}
 
 public class MainActivity extends SherlockActivity {
 
@@ -62,8 +67,27 @@ public class MainActivity extends SherlockActivity {
     }
     
     public void resetScore(View view) {
-    	displayResetConfirmationDialog();
-    	
+    	displayConfirmationDialog(new Command() {
+    		public void execute(){
+    			Score.reset();
+    		};
+    	});
+    }
+    
+    public void extraPointTeam1(View view) {
+    	displayConfirmationDialog(new Command() {
+    		public void execute(){
+    			Score.add(true, 1);
+    		};
+    	});
+    }
+    
+    public void extraPointTeam2(View view) {
+    	displayConfirmationDialog(new Command() {
+    		public void execute(){
+    			Score.add(false, 1);
+    		};
+    	});
     }
     
     private void displayScore() {
@@ -73,13 +97,13 @@ public class MainActivity extends SherlockActivity {
     	team2Score.setText(getString(R.string.team_score, 2, Score.get(false)));
     }
     
-    private void displayResetConfirmationDialog() {
+    private void displayConfirmationDialog(final Command command) {
 		AlertDialog alertDialog = new AlertDialog.Builder(this).create();
 		alertDialog.setTitle(getString(R.string.confirmation));
-		alertDialog.setMessage(getString(R.string.reset_confirmation_question));
+		alertDialog.setMessage(getString(R.string.confirmation_question));
 		alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(R.string.ok), new DialogInterface.OnClickListener() {
 		   public void onClick(DialogInterface dialog, int which) {
-			   Score.reset();
+			   command.execute();
 			   displayScore();
 			   dialog.dismiss();
 		   }

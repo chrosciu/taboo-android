@@ -15,7 +15,7 @@
     <string name="end">Koniec rundy</string>
     <string name="confirmation">Potwierdzenie</string>
     <string name="end_confirmation_question">Czy na pewno chcesz wyjść ?</string>
-    <string name="reset_confirmation_question">Jesteś pewien ?</string>
+    <string name="confirmation_question">Jesteś pewien ?</string>
     <string name="reset_score">Resetuj wynik</string>
     <string name="ok">OK</string>
     <string name="cancel">Anuluj</string>
@@ -25,6 +25,8 @@
     <string name="team2">Drużyna 2</string>
     <string name="team_score">Drużyna %1$d: %2$d pkt</string>
     <string name="sound">Dźwięk</string>
+    <string name="extra_point_team_1">Ekstra punkt dla drużyny 1</string>
+    <string name="extra_point_team_2">Ekstra punkt dla drużyny 2</string>
     
     <string name="pref_timeout_key">com.chrosciu.prefTimeout</string>
     <string name="settings_default_timeout_value">30</string>
