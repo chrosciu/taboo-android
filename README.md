@@ -4,7 +4,7 @@ taboo-android
 Taboo game for Android (Polish version)
 
 
-###Preparing cards
+### Preparing cards
 
 **NOTICE: Before you run application a set of cards must be created. Following rules apply:**
 
